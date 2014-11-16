@@ -32,3 +32,12 @@
 
 # Composer PHAR
 /composer.phar
+
+/build/
+
+# Other
+.idea
+coverage
+.DS_Store
+.netbeans
+desktop.ini

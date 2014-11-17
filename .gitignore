@@ -28,6 +28,7 @@
 /composer.phar
 /build/
 # Other
+.idea
 coverage
 .DS_Store
 .netbeans

@@ -33,3 +33,7 @@ coverage
 .DS_Store
 .netbeans
 desktop.ini
+
+#my project
+/web/private
+

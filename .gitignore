@@ -37,4 +37,4 @@ desktop.ini
 #my project
 /web/private
 /web/nano
-/app/Resources/views/*
+/app/Resources/views

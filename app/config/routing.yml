@@ -1,0 +1,12 @@
+vg_admin:
+    resource: "@VGAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
+vg_user:
+    resource: "@VGUserBundle/Resources/config/routing.yml"
+    prefix:   /
+admin_index:
+    pattern:  /admin/
+#    defaults: { _controller: "BionicUniversityNewsBundle:Admin:adminMainPage" }
+    defaults: { _controller: "VGAdminBundle:Default:index" }

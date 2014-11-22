@@ -2,6 +2,7 @@
 
 namespace VG\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,6 +40,12 @@ class User implements UserInterface, \Serializable
      * @var string
      */
     private $roles;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="VG\ContentBundle\Entity\Article", mappedBy="user")
+     */
+    private $articles;
 
     public function __construct($roles)
     {
@@ -183,6 +190,24 @@ class User implements UserInterface, \Serializable
     {
         return $this->email;
     }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+
 
     /**
      * Removes sensitive data from the user.

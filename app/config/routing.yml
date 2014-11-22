@@ -1,3 +1,8 @@
+vg_content:
+    resource: "@VGContentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 vg_admin:
     resource: "@VGAdminBundle/Controller/"
     type:     annotation

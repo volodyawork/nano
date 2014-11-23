@@ -38,3 +38,5 @@ desktop.ini
 /web/private
 /web/nano
 /app/Resources/views
+/src/VG/*/Resources/views/*/*.html.twig
+/src/VG/*/Resources/views/*.html.twig

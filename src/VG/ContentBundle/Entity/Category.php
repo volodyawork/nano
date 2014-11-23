@@ -47,7 +47,7 @@ class Category
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated", type="datetime")
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
     private $updated;
 

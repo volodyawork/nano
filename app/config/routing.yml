@@ -1,3 +1,8 @@
+vg_web:
+    resource: "@VGWebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 vg_content:
     resource: "@VGContentBundle/Controller/"
     type:     annotation

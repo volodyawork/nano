@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             new NthRoot\Bundle\EnhancedImageBundle\NthRootEnhancedImageBundle(),
 
 
-            new VG\CatalogBundle\VGCatalogBundle()
+            new VG\CatalogBundle\VGCatalogBundle(),
+            new VG\ProductBundle\VGProductBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

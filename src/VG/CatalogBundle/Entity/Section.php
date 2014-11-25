@@ -2,6 +2,7 @@
 
 namespace VG\CatalogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -74,6 +75,13 @@ class Section
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="VG\ProductBundle\Entity\Product", mappedBy="section")
+     */
+    private $products;
     
 
     /**
@@ -134,5 +142,27 @@ class Section
     {
         return $this->slug;
     }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    function __toString()
+    {
+        return $this->getName();
+    }
+
 
 }

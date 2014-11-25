@@ -1,7 +1,15 @@
 parameters:
-#    bionic_university_user.example.class: VG\UserBundle\Example
 
 services:
-#    bionic_university_user.example:
-#        class: %bionic_university_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    catalog.catalog_menu_listener:
+        class: VG\WebBundle\Listener\CatalogMenuListener
+        arguments:
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    catalog.catalog_menu_extension:
+        class: VG\WebBundle\Extension\CatalogMenuExtension
+        arguments:
+            - @catalog.catalog_menu_listener
+        tags:
+            - { name: twig.extension }

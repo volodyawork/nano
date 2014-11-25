@@ -1,3 +1,8 @@
+vg_catalog:
+    resource: "@VGCatalogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 vg_web:
     resource: "@VGWebBundle/Controller/"
     type:     annotation

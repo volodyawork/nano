@@ -20,6 +20,12 @@ class AppKernel extends Kernel
             new VG\AdminBundle\VGAdminBundle(),
             new VG\ContentBundle\VGContentBundle(),
             new VG\WebBundle\VGWebBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            //new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(), //////"trsteel/ckeditor-bundle": "1.5.*@dev"
+            new NthRoot\Bundle\EnhancedImageBundle\NthRootEnhancedImageBundle(),
+
+
+            new VG\CatalogBundle\VGCatalogBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

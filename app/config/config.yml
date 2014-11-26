@@ -80,3 +80,4 @@ swiftmailer:
     spool:     { type: memory }
 parameters:
     max_articles_on_listpage: 10
+    max_products_on_listpage: 10

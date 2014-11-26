@@ -35,25 +35,24 @@ class DefaultController extends Controller
         );
 
 
-        $total = count(
-            $em->getRepository('VGContentBundle:Article')->findBy(
-                array('category' => $category, 'status' => 1, 'showInList' => 1)
-            )
-        ); // todo count
-
-
-        $per_page = $this->container->getParameter('max_articles_on_listpage');
-
-        $last_page = ceil($total / $per_page);
-        $previous_page = $page > 1 ? $page - 1 : 1;
-        $next_page = $page < $last_page ? $page + 1 : $last_page;
-
         $expr = Criteria::expr();
         $criteria = Criteria::create()
             ->where($expr->eq('category', $category))
             ->andWhere($expr->eq('status', 1))
             ->andWhere($expr->eq('showInList', 1))
             ->orderBy(array("created" => Criteria::DESC));
+
+        $countQuery = $em->getRepository('VGContentBundle:Article')->createQueryBuilder('Article');
+        $countQuery->select('COUNT(Article)');
+        $countQuery->addCriteria($criteria);
+
+        $total = $countQuery->getQuery()->getSingleScalarResult();
+
+        $per_page = $this->container->getParameter('max_articles_on_listpage');
+
+        $last_page = ceil($total / $per_page);
+        $previous_page = $page > 1 ? $page - 1 : 1;
+        $next_page = $page < $last_page ? $page + 1 : $last_page;
 
         if ($per_page) {
             $criteria = $criteria->setMaxResults($per_page);

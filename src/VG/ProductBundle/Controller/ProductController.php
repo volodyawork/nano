@@ -13,7 +13,7 @@ use VG\ProductBundle\Form\ProductType;
 /**
  * Product controller.
  *
- * @Route("/product")
+ * @Route("/admin/product")
  */
 class ProductController extends Controller
 {

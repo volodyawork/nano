@@ -69,6 +69,7 @@ class ProductFixtures implements FixtureInterface, OrderedFixtureInterface
             $product1->setPrice(10.2 + $i);
             $product1->setDescription('Здесь произвольное описание товара.');
             $product1->setSection($sections[0]);
+            $product1->setStatus(1);
 
             $manager->persist($product1);
         }

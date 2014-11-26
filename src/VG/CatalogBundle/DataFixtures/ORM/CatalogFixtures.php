@@ -44,10 +44,36 @@ class CatalogFixtures implements FixtureInterface, OrderedFixtureInterface
             $manager->persist($section);
 
             $subSection = new Section();
-            $subSection->setName('Подраздел раздела');
+            $subSection->setName('Для точечных светильников');
+            $subSection->setParent($section);
+            $manager->persist($subSection);
+
+            $subSection = new Section();
+            $subSection->setName('Общего назначения');
+            $subSection->setParent($section);
+            $manager->persist($subSection);
+
+            $subSection = new Section();
+            $subSection->setName('Линейные Т8');
+            $subSection->setParent($section);
+            $manager->persist($subSection);
+
+            $subSection = new Section();
+            $subSection->setName('Дежурного освещения');
+            $subSection->setParent($section);
+            $manager->persist($subSection);
+
+            $subSection = new Section();
+            $subSection->setName('Для промышленных и личных светильников');
+            $subSection->setParent($section);
+            $manager->persist($subSection);
+
+            $subSection = new Section();
+            $subSection->setName('Автомобильные лампы');
             $subSection->setParent($section);
             $manager->persist($subSection);
         }
+
 
         $manager->flush();
     }

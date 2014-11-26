@@ -60,6 +60,13 @@ class Product
     private $slug;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+
+    /**
      * @var Section
      * @ORM\ManyToOne(targetEntity="VG\CatalogBundle\Entity\Section", inversedBy="products")
      */
@@ -164,6 +171,21 @@ class Product
         return $this->slug;
     }
 
+    /**
+     * @param int $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     /**
      * @param \VG\CatalogBundle\Entity\Section $section

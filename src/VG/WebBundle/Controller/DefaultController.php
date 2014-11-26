@@ -14,13 +14,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('VGCatalogBundle:Section');
-        $arrayTree = $repo->getRootNodes();
-        $treeOneLevel = $repo->children($arrayTree[0], true);
 
         return array(
-            'treeOneLevel' =>$treeOneLevel,
         );
     }
 }

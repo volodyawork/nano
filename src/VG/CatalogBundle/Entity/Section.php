@@ -164,5 +164,15 @@ class Section
         return $this->getName();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+
+
 
 }

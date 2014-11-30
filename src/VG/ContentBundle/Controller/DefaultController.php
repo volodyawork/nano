@@ -78,15 +78,15 @@ class DefaultController extends Controller
     /**
      * Finds and displays a Article entity.
      *
-     * @Route("/{id}", name="article_detail")
+     * @Route("/{slug}", name="article_detail")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('VGContentBundle:Article')->find($id);
+        $entity = $em->getRepository('VGContentBundle:Article')->findOneBy(array('slug'=>$slug));
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Article entity.');
         }

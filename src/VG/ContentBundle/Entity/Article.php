@@ -3,6 +3,7 @@
 namespace VG\ContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use VG\UserBundle\Entity\User;
 
 /**
@@ -33,9 +34,10 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="alias", type="string", length=255, nullable=true)
+     * @Gedmo\Slug(fields={"name"}, updatable=false)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
-    private $alias;
+    private $slug;
 
     /**
      * @var string
@@ -118,26 +120,19 @@ class Article
     }
 
     /**
-     * Set alias
-     *
-     * @param string $alias
-     * @return Article
+     * @param string $slug
      */
-    public function setAlias($alias)
+    public function setSlug($slug)
     {
-        $this->alias = $alias;
-
-        return $this;
+        $this->slug = $slug;
     }
 
     /**
-     * Get alias
-     *
-     * @return string 
+     * @return string
      */
-    public function getAlias()
+    public function getSlug()
     {
-        return $this->alias;
+        return $this->slug;
     }
 
     /**

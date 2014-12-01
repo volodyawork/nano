@@ -13,3 +13,7 @@ services:
             - @catalog.catalog_menu_listener
         tags:
             - { name: twig.extension }
+    util.contacthelper:
+      class: VG\WebBundle\Util\ContactHelper
+      arguments:
+        serviceContainer: "@service_container"

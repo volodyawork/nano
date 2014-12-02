@@ -20,13 +20,15 @@ class ArticleType extends AbstractType
             ->add('name', null, array('label' => 'Заголовок'))
             //->add('alias')
             ->add(
-                'content', 'ckeditor', array(
-                'config' => array(
-                    //'filebrowserUploadRoute' => 'my_route'
-                ),
-                'label' => 'Текст'
+                'content',
+                'ckeditor',
+                array(
+                    'config' => array(//'filebrowserUploadRoute' => 'my_route'
+                    ),
+                    'label' => 'Текст'
 
-            ))
+                )
+            )
             /*->add(
                 'content',
                 'ckeditor',
@@ -62,7 +64,7 @@ class ArticleType extends AbstractType
                 )
             )*/
             ->add(
-        'status',
+                'status',
                 'choice',
                 array(
                     'label' => 'Статус',
@@ -72,7 +74,7 @@ class ArticleType extends AbstractType
                     ),
                     'preferred_choices' => array(0),
                 )
-    )
+            )
             ->add(
                 'showInList',
                 'choice',

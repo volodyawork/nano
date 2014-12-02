@@ -21,11 +21,22 @@ class ContactHelper
 
     public function getContactForm()
     {
-        $request = $this->_container->get('request');
+        //$request = $this->_container->get('request');
 
         $contactData = [];
         $contactType = new ContactType();
         $contactForm = $this->_container->get('form.factory')->create($contactType, $contactData);
+
+        //$contactForm->handleRequest($request);
+
+        return $contactForm;
+    }
+
+    public function handleRequestContactForm()
+    {
+        $request = $this->_container->get('request');
+
+        $contactForm = $this->getContactForm();
 
         $contactForm->handleRequest($request);
 

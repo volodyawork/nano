@@ -5,6 +5,7 @@ namespace VG\WebBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\BrowserKit\Request;
 
 class ContactController extends Controller
 {
@@ -26,7 +27,7 @@ class ContactController extends Controller
     public function askWorkerAction()
     {
 
-        $form = $this->get('util.contacthelper')->getContactForm();
+        $form = $this->get('util.contacthelper')->handleRequestContactForm();
 
         if ($response = $this->get('util.contacthelper')->sendContactForm($form)) {
             return $response;

@@ -79,7 +79,7 @@ class Section
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="VG\ProductBundle\Entity\Product", mappedBy="section")
+     * @ORM\OneToMany(targetEntity="VG\ProductBundle\Entity\Product", mappedBy="section", cascade={"all"}, orphanRemoval=true)
      */
     private $products;
     
@@ -159,9 +159,13 @@ class Section
         return $this->products;
     }
 
-    function __toString()
+    public function __toString()
     {
-        return $this->getName();
+        $prefix = "";
+        for ($i=2; $i<= $this->lvl; $i++){
+            $prefix .= "----";
+        }
+        return $prefix . $this->getName();
     }
 
     /**
@@ -172,6 +176,19 @@ class Section
         return $this->lvl;
     }
 
+    public function getLaveledTitle()
+    {
+        return (string)$this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
 
 
 

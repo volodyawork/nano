@@ -3,10 +3,10 @@ vg_product:
     type:     annotation
     prefix:   /
 
-#vg_catalog:
-#    resource: "@VGCatalogBundle/Controller/"
-#    type:     annotation
-#    prefix:   /
+vg_catalog:
+    resource: "@VGCatalogBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 vg_web:
     resource: "@VGWebBundle/Controller/"

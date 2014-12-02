@@ -58,7 +58,7 @@ class ProductFixtures implements FixtureInterface, OrderedFixtureInterface
             'T8 (G13) Дневной 9 Вт',
         );
         $sectionRoot = $manager->getRepository('VGCatalogBundle:Section')->getRootNodes();
-        $sections = $manager->getRepository('VGCatalogBundle:Section')->children($sectionRoot[0],true);
+        $sections = $manager->getRepository('VGCatalogBundle:Section')->children($sectionRoot[0],false);
 
         $i = 0;
         foreach ($data as $name) {
@@ -68,7 +68,8 @@ class ProductFixtures implements FixtureInterface, OrderedFixtureInterface
             $product1->setMarking('001232' . $i);
             $product1->setPrice(10.2 + $i);
             $product1->setDescription('Здесь произвольное описание товара.');
-            $product1->setSection($sections[0]);
+            $section_id = $i%2;
+            $product1->setSection($sections[$section_id]);
             $product1->setStatus(1);
 
             $manager->persist($product1);

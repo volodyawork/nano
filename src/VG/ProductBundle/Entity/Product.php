@@ -67,6 +67,12 @@ class Product
     private $status;
 
     /**
+     * @var boolean
+     * @ORM\Column(name="best", type="boolean", nullable=true)
+     */
+    private $best;
+
+    /**
      * @var Section
      * @ORM\ManyToOne(targetEntity="VG\CatalogBundle\Entity\Section", inversedBy="products")
      */
@@ -201,6 +207,22 @@ class Product
     public function getSection()
     {
         return $this->section;
+    }
+
+    /**
+     * @param boolean $best
+     */
+    public function setBest($best)
+    {
+        $this->best = $best;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getBest()
+    {
+        return $this->best;
     }
 
 }

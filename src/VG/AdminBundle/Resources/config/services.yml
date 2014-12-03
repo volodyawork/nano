@@ -18,3 +18,11 @@ services:
             - ~
             - VG\CatalogBundle\Entity\Section
             - 'VGAdminBundle:SectionAdmin'
+    vg.admin.product:
+        class: VG\AdminBundle\Admin\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Магазин, label: Товары }
+        arguments:
+            - ~
+            - VG\ProductBundle\Entity\Product
+            - 'VGAdminBundle:ProductAdmin'

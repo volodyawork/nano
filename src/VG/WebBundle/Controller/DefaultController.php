@@ -42,10 +42,13 @@ class DefaultController extends Controller
             ->setMaxResults(10);
         $bestProducts = $em->getRepository('VGProductBundle:Product')->matching($criteria2);
 
+        //promo
+        $promo = $em->getRepository('VGContentBundle:Article')->findOneBy(array('slug'=>'homepage'));
 
         return array(
             'lastNews' => $lastNews,
             'bestProducts' => $bestProducts,
+            'promo' => $promo,
         );
     }
 }

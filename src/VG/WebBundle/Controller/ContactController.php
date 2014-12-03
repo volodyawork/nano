@@ -35,18 +35,4 @@ class ContactController extends Controller
 
         return null;
     }
-
-    /**
-     *
-     * @Route("/contact/ask", name="ask_form")
-     * @Template()
-     */
-    public function contactAction()
-    {
-        $form = $this->get('util.contacthelper')->getContactForm();
-
-        return array(
-            'form' => $form->createView(),
-        );
-    }
 }

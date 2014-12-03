@@ -13,7 +13,20 @@ services:
             - @catalog.catalog_menu_listener
         tags:
             - { name: twig.extension }
+
     util.contacthelper:
       class: VG\WebBundle\Util\ContactHelper
       arguments:
         serviceContainer: "@service_container"
+    contact_form_ask_listener:
+        class: VG\WebBundle\Listener\AskListener
+        calls:
+            - [setContactHelper, [@util.contacthelper]]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    contact_form_ask_extension:
+        class: VG\WebBundle\Extension\AskExtension
+        arguments:
+            - @contact_form_ask_listener
+        tags:
+            - { name: twig.extension }

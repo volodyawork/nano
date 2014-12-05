@@ -7,9 +7,18 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
+use Doctrine\ORM\EntityManager;
 
 class ProductAdmin extends Admin
 {
+    protected $em;
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+
 // setup the default sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'DESC',
@@ -70,6 +79,13 @@ class ProductAdmin extends Admin
                     'label' => 'Метка "Лучший товар"',
                 )
             )
+            ->add('images', 'sonata_type_collection', array(
+                    'required' => false
+                ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable'  => 'position',
+                ))
             ->add(
                 'slug',
                 null,
@@ -108,4 +124,22 @@ class ProductAdmin extends Admin
                 )
             );
     }
+
+    public function postPersist($object)
+    {
+        foreach ($object->getImages() as $image) {
+            $image->setProduct($object);
+
+            $this->em->persist($image);
+            $this->em->flush();
+        }
+    }
+
+    public function preUpdate($object)
+    {
+        foreach ($object->getImages() as $image) {
+            $image->setProduct($object);
+        }
+    }
+
 } 

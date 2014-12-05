@@ -5,7 +5,7 @@ services:
     vg.admin.article:
         class: VG\AdminBundle\Admin\ArticleAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: nanosvet, label: Текстовый материал }
+            - { name: sonata.admin, manager_type: orm, group: Контент, label: Текстовый материал }
         arguments:
             - ~
             - VG\ContentBundle\Entity\Article
@@ -21,8 +21,22 @@ services:
     vg.admin.product:
         class: VG\AdminBundle\Admin\ProductAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Магазин, label: Товары }
+            - {name: sonata.admin, manager_type: orm, group: Магазин, label: Товары}
         arguments:
             - ~
             - VG\ProductBundle\Entity\Product
-            - 'VGAdminBundle:ProductAdmin'
+            - SonataAdminBundle:CRUD
+        calls:
+            - [ setEntityManager, [ '@doctrine.orm.entity_manager' ] ]
+
+    vg.admin.product_image:
+        class: VG\AdminBundle\Admin\ProductImageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Магазин, label: Катринки }
+        arguments:
+            - ~
+            #- Application\Sonata\MediaBundle\Entity\Media
+            - VG\ProductBundle\Entity\ProductImage
+            - 'VGAdminBundle:ProductImageAdmin'
+
+

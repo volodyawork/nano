@@ -24,7 +24,10 @@
         "gedmo/doctrine-extensions": "2.3.*@dev",
         "sonata-project/admin-bundle": "2.4.*@dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
-        "sonata-project/core-bundle": "~2.2@dev"
+        "sonata-project/core-bundle": "~2.2@dev",
+        "sonata-project/media-bundle": "~2.3",
+
+        "jms/serializer-bundle": "~0.11"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

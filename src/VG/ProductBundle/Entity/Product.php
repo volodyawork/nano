@@ -2,9 +2,12 @@
 
 namespace VG\ProductBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\MediaBundle\Model\Media;
 use VG\CatalogBundle\Entity\Section;
+use VG\ProductBundle\Entity\ProductImage;
 
 /**
  * Product
@@ -33,7 +36,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="marking", type="string", length=255, unique=true)
+     * @ORM\Column(name="marking", type="string", length=255)
      */
     private $marking;
 
@@ -78,6 +81,18 @@ class Product
      */
     private $section;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="VG\ProductBundle\Entity\ProductImage", mappedBy="product", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position"="ASC"})
+     */
+    private $images;
+
+
+    public function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -223,6 +238,61 @@ class Product
     public function getBest()
     {
         return $this->best;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $images
+     */
+    public function setImages($images)
+    {
+
+        if (!$images) {
+            $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+            return;
+        }
+
+        foreach ($images as $image) {
+            $image->setProduct($this);
+        }
+
+        foreach ($this->getImages() as $image) {
+            if (!$images->contains($image)) {
+                $this->getImages()->removeElement($image);
+                $image->setProduct(null);
+            }
+        }
+
+        $this->images = $images;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add image
+     *
+     * @param ProductImage $ProductImage
+     */
+    public function addImage(\VG\ProductBundle\Entity\ProductImage $ProductImage)
+    {
+        $ProductImage->setProduct($this);
+        $this->images[] = $ProductImage;
+
+        return $this;
+    }
+
+    /**
+     * @param ProductImage $ProductImage
+     */
+    public function removeImage(\VG\ProductBundle\Entity\ProductImage $ProductImage)
+    {
+        $this->getImages()->removeElement($ProductImage);
+        $ProductImage->setProduct(null);
     }
 
 }

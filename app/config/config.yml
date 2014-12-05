@@ -60,6 +60,10 @@ doctrine:
         #   3. Uncomment next line:
         #     path:     "%database_path%"
 
+        # for mediaBundle
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
@@ -70,6 +74,10 @@ doctrine:
                 alias: Gedmo
                 prefix: Gedmo\Tree\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+            SonataMediaBundle: ~
+            ApplicationSonataMediaBundle: ~
+            #VGAdminBundle: ~
+            #VGProductBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -91,6 +99,40 @@ sonata_block:
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:
+
+sonata_media:
+    # if you don't use default namespace configuration
+    #class:
+    #    media: MyVendor\MediaBundle\Entity\Media
+    #    gallery: MyVendor\MediaBundle\Entity\Gallery
+    #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+        product:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                thumb: { height: 65 , quality: 70}
+                small: { width: 198 , height: 135, quality: 70}
+                big:   { height: 343 , quality: 70}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     false
 
 parameters:
     max_articles_on_listpage: 10

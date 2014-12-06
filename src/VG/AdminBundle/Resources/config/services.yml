@@ -32,7 +32,7 @@ services:
     vg.admin.product_image:
         class: VG\AdminBundle\Admin\ProductImageAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Магазин, label: Катринки }
+            - { name: sonata.admin, manager_type: orm, group: Магазин, label: Катринки, show_in_dashboard: false }
         arguments:
             - ~
             #- Application\Sonata\MediaBundle\Entity\Media

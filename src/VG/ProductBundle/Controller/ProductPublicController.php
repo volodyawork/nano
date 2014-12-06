@@ -116,9 +116,15 @@ class ProductPublicController extends Controller
         $repo = $em->getRepository('VGCatalogBundle:Section');
         $arrayPath = $repo->getPath($entity->getSection());
 
+        $media = [];
+        foreach ($entity->getImages() as $productImage){
+            $media[] = $productImage->getImage();
+        }
+
         return array(
             'entity' => $entity,
             'arrayPath' => $arrayPath,
+            'media' => $media,
         );
     }
 

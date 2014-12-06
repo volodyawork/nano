@@ -1,3 +1,8 @@
+vg_cart:
+    resource: "@VGCartBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 vg_product:
     resource: "@VGProductBundle/Controller/"
     type:     annotation

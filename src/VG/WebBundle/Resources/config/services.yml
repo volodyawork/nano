@@ -15,9 +15,9 @@ services:
             - { name: twig.extension }
 
     util.contacthelper:
-      class: VG\WebBundle\Util\ContactHelper
-      arguments:
-        serviceContainer: "@service_container"
+        class: VG\WebBundle\Util\ContactHelper
+        arguments:
+            serviceContainer: "@service_container"
     contact_form_ask_listener:
         class: VG\WebBundle\Listener\AskListener
         calls:

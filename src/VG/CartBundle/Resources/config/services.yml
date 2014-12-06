@@ -1,0 +1,11 @@
+parameters:
+
+services:
+    vgcart.twig.vgcart_extension:
+        class: VG\CartBundle\Twig\TwigExtension
+        tags:
+            - { name: twig.extension }
+        arguments:
+            - @service_container
+    vgcart.utils:
+        class: VG\CartBundle\Utils\CartUtils

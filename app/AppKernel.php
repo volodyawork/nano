@@ -44,6 +44,7 @@ class AppKernel extends Kernel
             new VG\WebBundle\VGWebBundle(),
             new VG\CatalogBundle\VGCatalogBundle(),
             new VG\ProductBundle\VGProductBundle(),
+            new VG\CartBundle\VGCartBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

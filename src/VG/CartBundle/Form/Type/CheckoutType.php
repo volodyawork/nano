@@ -17,13 +17,13 @@ class CheckoutType extends AbstractType
         $builder
             ->add('name', 'text', array(
                     'attr' => array(
-                        'placeholder' => 'Как Вас зовут?',
+                        'placeholder' => 'Введите Ваше имя',
                         'pattern'     => '.{2,}' //minlength
                     )
                 ))
             ->add('email', 'email', array(
                     'attr' => array(
-                        'placeholder' => 'Введите ваш email'
+                        'placeholder' => 'Введите Ваш email'
                     )
                 ))
             ->add('phone', 'text', array(

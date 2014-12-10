@@ -64,10 +64,10 @@ class ProductFixtures implements FixtureInterface, OrderedFixtureInterface
         foreach ($data as $name) {
             $i++;
             $product1 = new Product();
-            $product1->setName($name);
+            $product1->setName($i . $name);
             $product1->setMarking('001232' . $i);
             $product1->setPrice(10.2 + $i);
-            $product1->setDescription('Здесь произвольное описание товара.');
+            $product1->setDescription('Здесь произвольное описание товара' . $i . '!!!');
             $section_id = $i%2;
             $product1->setSection($sections[$section_id]);
             if ($section_id == 1){

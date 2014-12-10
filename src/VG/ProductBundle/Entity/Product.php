@@ -13,7 +13,7 @@ use VG\ProductBundle\Entity\ProductImage;
  * Product
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="VG\ProductBundle\Repository\ProductRepository")
  */
 class Product
 {

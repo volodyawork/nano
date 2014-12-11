@@ -30,6 +30,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'StpRedactorBundle:Redactor:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -90,6 +93,7 @@ swiftmailer:
 
 sonata_admin:
     title: Admin
+
 
 sonata_block:
     default_contexts: [cms]
@@ -152,6 +156,31 @@ fos_elastica:
                             query_builder_method: createIsActiveQueryBuilder
                         listener: ~
                         finder: ~
+stp_redactor:
+    admin:
+        upload_file:
+            dir: "%kernel.root_dir%/../web/uploads/content/files"
+            maxSize: 10M
+            mimeTypes:
+                - image/png
+                - image/jpeg
+        upload_image:
+            dir: "%kernel.root_dir%/../web/uploads/content/images"
+            maxSize: 5M
+            minWidth: 10
+            maxWidth: 900
+            minHeight: 10
+            maxHeight: 900
+        role: [ROLE_ADMIN]
+        settings: {focus: true, buttonSource: true, imageUploadCallback: redactorUploadFile, plugins: ['table']}
+    blog:
+        upload_image:
+            dir: "%kernel.root_dir%/../web/uploads/blog/images"
+        role: [IS_AUTHENTICATED_FULLY]
+    comments:
+        role: [IS_AUTHENTICATED_ANONYMOUSLY]
+        settings:
+            lang: ru
 
 parameters:
     max_articles_on_listpage: 10

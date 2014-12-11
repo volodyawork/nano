@@ -51,3 +51,7 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
+stp_redactor:
+    resource: "@StpRedactorBundle/Controller/"
+    type:     annotation
+    prefix:   /redactor/

@@ -47,15 +47,7 @@ class ProductAdmin extends Admin
             )
             ->add('name', null, array('label' => 'Название товара'))
             ->add('marking', null, array('label' => 'Артикул'))
-            ->add(
-                'description',
-                'ckeditor',
-                array(
-                    'config' => array( //'filebrowserUploadRoute' => 'my_route'
-                    ),
-                    'label' => 'Описание товара'
-                )
-            )
+            ->add('description', 'redactor', array('redactor' => 'admin','label' => 'Описание товара'))
             ->add(
                 'price',
                 null,
@@ -140,6 +132,11 @@ class ProductAdmin extends Admin
         foreach ($object->getImages() as $image) {
             $image->setProduct($object);
         }
+    }
+
+    public function configure()
+    {
+        $this->setTemplate('edit', 'VGAdminBundle:CRUD:edit_add_for_redactor.html.twig');
     }
 
 } 

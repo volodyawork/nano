@@ -21,15 +21,7 @@ class ArticleAdmin extends Admin
         $formMapper
             ->add('category', null, array('label' => 'Категория', 'required' => true))
             ->add('name', null, array('label' => 'Заголовок'))
-            ->add(
-                'content',
-                'ckeditor',
-                array(
-                    'config' => array( //'filebrowserUploadRoute' => 'my_route'
-                    ),
-                    'label' => 'Текст'
-                )
-            )
+            ->add('content', 'redactor', array('redactor' => 'admin', 'label' => 'Описание товара'))
             ->add(
                 'showInList',
                 'choice',
@@ -83,5 +75,10 @@ class ArticleAdmin extends Admin
                     )
                 )
             );
+    }
+
+    public function configure()
+    {
+        $this->setTemplate('edit', 'VGAdminBundle:CRUD:edit_add_for_redactor.html.twig');
     }
 } 

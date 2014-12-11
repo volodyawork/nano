@@ -16,9 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            //new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(), //////"trsteel/ckeditor-bundle": "1.5.*@dev"
-            new NthRoot\Bundle\EnhancedImageBundle\NthRootEnhancedImageBundle(),
             //admin
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -32,6 +29,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new \FOS\ElasticaBundle\FOSElasticaBundle(),
+            new Stp\RedactorBundle\StpRedactorBundle(),
             new VG\UserBundle\VGUserBundle(),
             new VG\AdminBundle\VGAdminBundle(),
             new VG\ContentBundle\VGContentBundle(),

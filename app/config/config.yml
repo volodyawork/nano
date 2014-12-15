@@ -93,6 +93,26 @@ swiftmailer:
 
 sonata_admin:
     title: Admin
+    templates:
+        layout: VGAdminBundle::standard_layout.html.twig
+    dashboard:
+       groups:
+           vg.admin.group.content:
+               label: Контент
+               label_catalogue: VGContentBundle
+               items:
+                   - vg.admin.article
+           vg.admin.group.product:
+               label: Магазин
+               label_catalogue: VGProductBundle
+               items:
+                   - vg.admin.product
+                   - vg.admin.section
+           vg.admin.group.user:
+               label: Пользователи
+               label_catalogue: VGUserBundle
+               items:
+                   - vg.admin.user
 
 
 sonata_block:
@@ -117,23 +137,19 @@ sonata_media:
         default:  # the default context is mandatory
             providers:
                 - sonata.media.provider.image
-
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
         product:
             providers:
                 - sonata.media.provider.image
-
             formats:
                 thumb: { height: 65 , quality: 70}
                 small: { width: 198 , height: 135, quality: 70}
-                big:   { height: 343 , quality: 70}
-
+                big:   { width: 343 , quality: 70}
     cdn:
         server:
             path: /uploads/media # http://media.sonata-project.org/
-
     filesystem:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media

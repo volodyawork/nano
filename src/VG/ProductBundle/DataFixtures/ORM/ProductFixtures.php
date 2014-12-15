@@ -26,39 +26,9 @@ class ProductFixtures implements FixtureInterface, OrderedFixtureInterface
         $data = array(
             'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
             'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
-            'ECOBEAM E27 A6-5X1W (Par20) Warm 45deg',
-            'Geniled Е27 5W500',
-            'Светодиодная лампа Geniled Е27 А60 7W 4200K',
-            'T8 (G13) Дневной 9 Вт',
         );
         $sectionRoot = $manager->getRepository('VGCatalogBundle:Section')->getRootNodes();
-        $sections = $manager->getRepository('VGCatalogBundle:Section')->children($sectionRoot[0],false);
+        $sections = $manager->getRepository('VGCatalogBundle:Section')->children($sectionRoot[0], false);
 
         $i = 0;
         foreach ($data as $name) {
@@ -68,11 +38,10 @@ class ProductFixtures implements FixtureInterface, OrderedFixtureInterface
             $product1->setMarking('001232' . $i);
             $product1->setPrice(10.2 + $i);
             $product1->setDescription('Здесь произвольное описание товара' . $i . '!!!');
-            $section_id = $i%2;
+            $section_id = 1;
             $product1->setSection($sections[$section_id]);
-            if ($section_id == 1){
-                $product1->setBest(true);
-            }
+
+            $product1->setBest(true);
             $product1->setStatus(1);
 
             $manager->persist($product1);

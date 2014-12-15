@@ -40,7 +40,7 @@ class SecurityController extends Controller{
         $em = $this->getDoctrine()->getManager();
 
         $error_message="";
-        $roles = array('ROLE_USER');
+        $roles = array('ROLE_ADMIN');
         $user = new User($roles);
         $form = $this->createFormBuilder($user)
             ->add('password', 'password')
@@ -64,14 +64,14 @@ class SecurityController extends Controller{
 
 
             // send email with login-password
-            // TODO test!
+            $site_mail = $this->container->getParameter('admin_email');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Регистрация')
-                ->setFrom('unik.dating@mail.ru')
+                ->setFrom($site_mail)
                 ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(
-                        'VGUser:Security:register.email.txt.twig',
+                        'VGUserBundle:Security:register.email.txt.twig',
                         array('login' => $user->getEmail(), 'password'=>$form['password']->getData())
                     )
                 )

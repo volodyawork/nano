@@ -69,10 +69,11 @@ class ContactHelper
         $view = 'VGWebBundle:Contact:email.html.twig';
         $renderedView = $this->_container->get('templating')->render($view, ['data' => $data]);
 
+        $to = $this->_container->getParameter('admin_email');
         $message = Swift_Message::newInstance()
             ->setSubject('Вопрос из сайта Наносвет!')
-            ->setFrom(array('nanosvet@company.com' => 'Company.com'))
-            ->setTo('youremail@gmail.com')
+            ->setFrom(array($data['email'] => $data['username']))
+            ->setTo($to)
             ->setContentType("text/html")
             ->setBody($renderedView);
         $this->_container->get('mailer')->send($message);

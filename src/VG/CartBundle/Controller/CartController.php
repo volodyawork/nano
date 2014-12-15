@@ -126,13 +126,16 @@ class CartController extends Controller
                 )
             );
 
+
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()) {
+                $adminMail = $this->container->getParameter('admin_email');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Оформлен заказ!')
                     ->setFrom($form->get('email')->getData())
-                    ->setTo('contact@example.com')
+                    ->setTo($adminMail)
+                    ->setContentType("text/html")
                     ->setBody(
                         $this->renderView(
                             '@VGCart/Mail/mailToAdmin.html.twig',
@@ -148,8 +151,31 @@ class CartController extends Controller
                             )
                         )
                     );
-
                 $this->get('mailer')->send($message);
+
+                $messageToCustomer = \Swift_Message::newInstance()
+                    ->setSubject('Оформлен заказ на сайте Наносвет!')
+                    ->setFrom($adminMail)
+                    ->setTo($form->get('email')->getData())
+                    ->setContentType("text/html")
+                    ->setBody(
+                        $this->renderView(
+                            '@VGCart/Mail/mailToCustomer.html.twig',
+                            array(
+                                'ip' => $request->getClientIp(),
+                                'name' => $form->get('name')->getData(),
+                                'email' => $form->get('email')->getData(),
+                                'phone' => $form->get('phone')->getData(),
+                                'message' => $form->get('message')->getData(),
+                                'productsInCart' => unserialize($form->get('productsInCart')->getData()),
+                                'totalItems' => $form->get('totalItems')->getData(),
+                                'total' => $form->get('total')->getData(),
+                            )
+                        )
+                    );
+                $this->get('mailer')->send($messageToCustomer);
+
+
 
                 $cart->destroy();
                 $session->save();

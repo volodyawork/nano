@@ -2,6 +2,15 @@ parameters:
 #    bionic_university_user.example.class: VG\UserBundle\Example
 
 services:
+    vg.admin.user:
+        class: VG\AdminBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Пользователи, label: Админы }
+        arguments:
+            - ~
+            - VG\UserBundle\Entity\User
+            - 'VGAdminBundle:UserAdmin'
+
     vg.admin.article:
         class: VG\AdminBundle\Admin\ArticleAdmin
         tags:

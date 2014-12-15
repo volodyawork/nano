@@ -1,8 +1,10 @@
-{% extends 'VGWebBundle::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block title %}Регистрация{% endblock %}
-{% block center %}
-    <h1>Регистрация</h1>
+{% block body %}
+    <h1>Регистрация нового пользователя</h1>
+    Создание еще одной учетной записи с правами администратора сайта.
+    Пароль созданного пользователя будет отправлен на его email.
 
     {{ form_start(form) }}
     {{ form_errors(form) }}
@@ -15,7 +17,7 @@
 
     <span style="font-size:14px; color:red;"> {{ error_message }} </span>
 
-    {{ form_widget(form.register,{ 'attr':{'class':'add_button', 'name':'Зарегистрироваться' }}) }}
+    {{ form_widget(form.register,{ 'attr':{'class':'add_button'}}) }}
 
     {{ form_end(form) }}
 {% endblock %}

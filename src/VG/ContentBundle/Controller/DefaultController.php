@@ -78,7 +78,7 @@ class DefaultController extends Controller
     /**
      * Finds and displays a Article entity.
      *
-     * @Route("/{slug}", name="article_detail")
+     * @Route("/{category_name}/{slug}.html", name="article_detail", requirements={"category_name" = "novosti|pages"})
      * @Method("GET")
      * @Template()
      */

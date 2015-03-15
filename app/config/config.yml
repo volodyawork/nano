@@ -33,6 +33,8 @@ twig:
     form:
         resources:
             - 'StpRedactorBundle:Redactor:fields.html.twig'
+    globals:
+        feedback_mail: %feedback_mail%
 
 # Assetic Configuration
 assetic:
@@ -154,24 +156,6 @@ sonata_media:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media
             create:     false
-fos_elastica:
-    clients:
-        default: { host: localhost, port: 9200 }
-    indexes:
-        nano:
-            client: default
-            types:
-                product:
-                    mappings:
-                        name: { boost: 5 }
-                        description: { boost: 3 }
-                    persistence:
-                        driver: orm
-                        model: VG\ProductBundle\Entity\Product
-                        provider:
-                            query_builder_method: createIsActiveQueryBuilder
-                        listener: ~
-                        finder: ~
 stp_redactor:
     admin:
         upload_file:

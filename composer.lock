@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c74e63526cd41fd56f10af01de730ae9",
+    "hash": "fb07173395c8f16cc1d7bea68726cbeb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1929,6 +1929,56 @@
             "time": "2014-09-15 12:42:36"
         },
         {
+            "name": "liip/search-bundle",
+            "version": "1.0.1",
+            "target-dir": "Liip/SearchBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liip/LiipSearchBundle.git",
+                "reference": "33bc147416e662749355125922a2ad7b12cbcade"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liip/LiipSearchBundle/zipball/33bc147416e662749355125922a2ad7b12cbcade",
+                "reference": "33bc147416e662749355125922a2ad7b12cbcade",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Liip\\SearchBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liip AG",
+                    "homepage": "http://www.liip.ch/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/liip/LiipSearchBundle/contributors"
+                }
+            ],
+            "description": "This bundles provides some basic infrastructure for creating a search UI in Symfony2 applications along with integration with Google's search API",
+            "keywords": [
+                "Symfony2"
+            ],
+            "time": "2015-01-19 20:07:21"
+        },
+        {
             "name": "michelf/php-markdown",
             "version": "1.4.1",
             "source": {
@@ -3805,6 +3855,7 @@
         "kraksoft/redactor-bundle": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
     },

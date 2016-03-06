@@ -95,11 +95,9 @@ class ProductAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add(
-                'name',
-                null,
-                array('label' => 'Название')
-            )//    ->add('created', 'doctrine_orm_datetime_range', array('input_type' => 'timestamp'))
+            ->add('name', null, array('label' => 'Название'))
+            ->add('section', null, array('label' => 'Раздел'))
+            //->add('created', 'doctrine_orm_datetime_range', array('input_type' => 'timestamp'))
         ;
     }
 
@@ -108,7 +106,18 @@ class ProductAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->addIdentifier('id')
-            ->addIdentifier('status')
+            ->addIdentifier(
+                'status',
+                'choice',
+                array(
+                    'label' => 'Статус',
+                    'choices' => array(
+                        0 => 'Черновик',
+                        1 => 'Активный'
+                    ),
+                    'preferred_choices' => array(0),
+                )
+            )
             ->addIdentifier('price')
             ->addIdentifier('best')
             ->addIdentifier('sale')

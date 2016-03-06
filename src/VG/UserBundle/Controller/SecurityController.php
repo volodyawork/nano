@@ -64,10 +64,13 @@ class SecurityController extends Controller{
 
 
             // send email with login-password
-            $site_mail = $this->container->getParameter('admin_email');
+            //$adminMail = $this->container->getParameter('admin_email');
+            $adminMailParam = $this->getDoctrine()->getEntityManager()->getRepository('VGWebBundle:Param')
+                ->findOneBy(['slug' => 'admin_email']);
+            $adminMail = ($adminMailParam) ? $adminMailParam->getValue() : $this->container->getParameter('admin_email');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Регистрация')
-                ->setFrom($site_mail)
+                ->setFrom($adminMail)
                 ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(

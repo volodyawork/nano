@@ -30,6 +30,8 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new \FOS\ElasticaBundle\FOSElasticaBundle(),
             new Stp\RedactorBundle\StpRedactorBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+
             new VG\UserBundle\VGUserBundle(),
             new VG\AdminBundle\VGAdminBundle(),
             new VG\ContentBundle\VGContentBundle(),

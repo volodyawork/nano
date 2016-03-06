@@ -115,6 +115,11 @@ sonata_admin:
                label_catalogue: VGUserBundle
                items:
                    - vg.admin.user
+           vg.admin.group.param:
+               label: Настройки магазина
+               label_catalogue: VGWebBundle
+               items:
+                   - vg.admin.param
 
 
 sonata_block:
@@ -181,6 +186,12 @@ stp_redactor:
         role: [IS_AUTHENTICATED_ANONYMOUSLY]
         settings:
             lang: ru
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
 
 parameters:
     max_articles_on_listpage: 10

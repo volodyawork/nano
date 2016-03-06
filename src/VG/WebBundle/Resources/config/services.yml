@@ -30,3 +30,16 @@ services:
             - @contact_form_ask_listener
         tags:
             - { name: twig.extension }
+
+    params.listener:
+        class: VG\WebBundle\Listener\ParamListener
+        arguments:
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    params.extension:
+        class: VG\WebBundle\Extension\ParamExtension
+        arguments:
+            - @params.listener
+        tags:
+            - { name: twig.extension }

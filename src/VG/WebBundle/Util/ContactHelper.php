@@ -69,11 +69,14 @@ class ContactHelper
         $view = 'VGWebBundle:Contact:email.html.twig';
         $renderedView = $this->_container->get('templating')->render($view, ['data' => $data]);
 
-        $to = $this->_container->getParameter('admin_email');
+        //$adminMail = $this->_container->getParameter('admin_email');
+        $adminMailParam = $this->_container->get('doctrine.orm.entity_manager')->getRepository('VGWebBundle:Param')
+            ->findOneBy(['slug' => 'admin_email']);
+        $adminMail = ($adminMailParam) ? $adminMailParam->getValue() : $this->_container->getParameter('admin_email');
         $message = Swift_Message::newInstance()
             ->setSubject('Вопрос из сайта Наносвет!')
             ->setFrom(array($data['email'] => $data['username']))
-            ->setTo($to)
+            ->setTo($adminMail)
             ->setContentType("text/html")
             ->setBody($renderedView);
         $this->_container->get('mailer')->send($message);

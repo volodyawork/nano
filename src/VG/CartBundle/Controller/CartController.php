@@ -130,7 +130,10 @@ class CartController extends Controller
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $adminMail = $this->container->getParameter('admin_email');
+                //$adminMail = $this->container->getParameter('admin_email');
+                $adminMailParam = $this->getDoctrine()->getEntityManager()->getRepository('VGWebBundle:Param')
+                    ->findOneBy(['slug' => 'admin_email']);
+                $adminMail = ($adminMailParam) ? $adminMailParam->getValue() : $this->container->getParameter('admin_email');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Оформлен заказ!')
                     ->setFrom($form->get('email')->getData())

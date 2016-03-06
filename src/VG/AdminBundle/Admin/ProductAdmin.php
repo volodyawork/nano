@@ -71,6 +71,13 @@ class ProductAdmin extends Admin
                     'label' => 'Метка "Лучший товар"',
                 )
             )
+            ->add(
+                'sale',
+                null,
+                array(
+                    'label' => 'Акция',
+                )
+            )
             ->add('images', 'sonata_type_collection', array(
                     'required' => false
                 ), array(
@@ -104,6 +111,7 @@ class ProductAdmin extends Admin
             ->addIdentifier('status')
             ->addIdentifier('price')
             ->addIdentifier('best')
+            ->addIdentifier('sale')
             ->add(
                 '_action',
                 'actions',

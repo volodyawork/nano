@@ -88,6 +88,11 @@ class Product
      */
     private $images;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="sale", type="boolean", nullable=true)
+     */
+    private $sale;
 
     public function __construct()
     {
@@ -295,4 +300,19 @@ class Product
         $ProductImage->setProduct(null);
     }
 
+    /**
+     * @return boolean
+     */
+    public function isSale()
+    {
+        return $this->sale;
+    }
+
+    /**
+     * @param boolean $sale
+     */
+    public function setSale($sale)
+    {
+        $this->sale = $sale;
+    }
 }

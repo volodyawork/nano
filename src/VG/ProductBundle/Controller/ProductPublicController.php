@@ -128,4 +128,57 @@ class ProductPublicController extends Controller
         );
     }
 
+    /**
+     * Sales Product entities.
+     *
+     * @Route("/sale/{page}", name="product_sale", requirements={"page" = "\d+"}, defaults={"page" = 1})
+     * @Method("GET")
+     */
+    public function saleAction($page)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $expr = Criteria::expr();
+        $criteria = Criteria::create()
+            ->where($expr->eq('sale', 1))
+            ->andWhere($expr->eq('status', 1))
+            ->orderBy(array("id" => Criteria::DESC));
+
+        $countQuery = $em->getRepository('VGProductBundle:Product')->createQueryBuilder('Product');
+        $countQuery->select('COUNT(Product)');
+        $countQuery->addCriteria($criteria);
+
+        $total = $countQuery->getQuery()->getSingleScalarResult();
+
+        $per_page = $this->container->getParameter('max_products_on_listpage');
+
+
+        $last_page = ceil($total / $per_page);
+        $previous_page = $page > 1 ? $page - 1 : 1;
+        $next_page = $page < $last_page ? $page + 1 : $last_page;
+
+
+
+        if ($per_page) {
+            $criteria = $criteria->setMaxResults($per_page);
+        }
+        $offset = ($page - 1) * $per_page;
+        if ($offset) {
+            $criteria = $criteria->setFirstResult($offset);
+        }
+
+        $entities = $em->getRepository('VGProductBundle:Product')->matching($criteria);
+
+
+        return $this->render('VGProductBundle:ProductPublic:sale.html.twig', array(
+            'entities' => $entities,
+            'last_page' => $last_page,
+            'previous_page' => $previous_page,
+            'current_page' => $page,
+            'next_page' => $next_page,
+            'total' => $total
+
+        ));
+    }
+
 }

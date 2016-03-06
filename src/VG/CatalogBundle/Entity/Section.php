@@ -82,7 +82,13 @@ class Section
      * @ORM\OneToMany(targetEntity="VG\ProductBundle\Entity\Product", mappedBy="section", cascade={"all"}, orphanRemoval=true)
      */
     private $products;
-    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * Get id
@@ -190,6 +196,19 @@ class Section
         return $this->children;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 }

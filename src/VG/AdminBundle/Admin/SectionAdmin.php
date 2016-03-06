@@ -89,6 +89,7 @@ class SectionAdmin extends Admin
                 )
             )
             ->add('name', null, array('label' => 'Название'))
+            ->add('description', 'redactor', array('redactor' => 'admin','label' => 'Описание категории', 'required' => false))
             ->end();
     }
 
@@ -127,5 +128,10 @@ class SectionAdmin extends Admin
         $repo->verify();
         $repo->recover();
         $em->flush();
+    }
+
+    public function configure()
+    {
+        $this->setTemplate('edit', 'VGAdminBundle:CRUD:edit_add_for_redactor.html.twig');
     }
 } 

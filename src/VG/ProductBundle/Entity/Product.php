@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\MediaBundle\Model\Media;
+use VG\CatalogBundle\Entity\Manufacturer;
 use VG\CatalogBundle\Entity\Section;
 use VG\ProductBundle\Entity\ProductImage;
 
@@ -93,6 +94,13 @@ class Product
      * @ORM\Column(name="sale", type="boolean", nullable=true)
      */
     private $sale;
+
+    /**
+     * @var Manufacturer
+     * @ORM\ManyToOne(targetEntity="VG\CatalogBundle\Entity\Manufacturer", inversedBy="products")
+     * @ORM\JoinColumn(name="manufacturer_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $manufacturer;
 
     public function __construct()
     {
@@ -315,4 +323,21 @@ class Product
     {
         $this->sale = $sale;
     }
+
+    /**
+     * @return Manufacturer
+     */
+    public function getManufacturer()
+    {
+        return $this->manufacturer;
+    }
+
+    /**
+     * @param Manufacturer $manufacturer
+     */
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
+    }
+    
 }

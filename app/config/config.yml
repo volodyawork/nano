@@ -110,6 +110,7 @@ sonata_admin:
                items:
                    - vg.admin.product
                    - vg.admin.section
+                   - vg.admin.manufacturer
            vg.admin.group.user:
                label: Пользователи
                label_catalogue: VGUserBundle

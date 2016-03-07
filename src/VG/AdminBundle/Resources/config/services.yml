@@ -57,4 +57,13 @@ services:
             - VG\ProductBundle\Entity\ProductImage
             - 'VGAdminBundle:ProductImageAdmin'
 
+    vg.admin.manufacturer:
+        class: VG\AdminBundle\Admin\ManufacturerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Магазин, label: Производители }
+        arguments:
+            - ~
+            - VG\CatalogBundle\Entity\Manufacturer
+            - 'VGAdminBundle:ManufacturerAdmin'
+
 
